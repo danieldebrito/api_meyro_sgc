@@ -22,13 +22,16 @@ $app->group('/maquina', function () {
     // http://localhost/api_meyro/index.php/pedido/
   $this->get('/{id}', \maquinaApi::class . ':getOne');
 
-    // http://localhost/api_meyro/index.php/pedido/   +  body  +  form-data  y poner los parametros, 
+    // http://localhost/api_meyro/index.php/pedido/   
+    // +  body  +  form-data  y poner los parametros, 
   $this->post('/', \maquinaApi::class . ':setOne');
 
-    // http://localhost/api_meyro/index.php/pedido/ + body + x-www.form.urlencoded y poner lo parametros
+    // http://localhost/api_meyro/index.php/pedido/ 
+    // + body + x-www.form.urlencoded y poner lo parametros
   $this->delete('/', \maquinaApi::class . ':deleteOne');
 
-    // http://localhost/api_meyro/index.php/pedido/update +  body  +  form-data  y poner todos los tres parametros
+    // http://localhost/api_meyro/index.php/pedido/update 
+    // +  body  +  form-data  y poner todos los tres parametros
   $this->post('/update[/]', \maquinaApi::class . ':updateOne');
 });
 
