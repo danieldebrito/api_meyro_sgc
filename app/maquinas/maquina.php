@@ -1,19 +1,17 @@
 <?php
 class maquina
 {
-	public $id;
+	public $idMaquina;
  	public $detalle;
   	public $marca;
 	public $sector;
-	public $fabricante_nombre;
-	public $fabricante_direccion;
-	public $fabricante_telefono;
-	public $fabricante_contacto;
+	public $idProveedorFabricante;
+	public $estado;
 
 	public static function TraerTodos(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `maquina` WHERE 1
+		SELECT * FROM `maquinas` WHERE 1
 		");
 		$consulta->execute();		
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "maquina");		
@@ -22,7 +20,7 @@ class maquina
 	public static function TraerUno($id) {
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `maquina` WHERE `id` =  $id
+		SELECT * FROM `maquinas` WHERE `idMaquina` =  $id
 		");
 		$consulta->execute();
 		$maquina = $consulta->fetchObject('maquina');
@@ -32,34 +30,29 @@ class maquina
 	public function CargarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		INSERT INTO `maquina` 
-				(`id`, 
+		INSERT INTO `maquinas` 
+				(`idMaquina`, 
 				`detalle`, 
 				`marca`, 
-				`fabricante_nombre`, 
-				`fabricante_direccion`, 
-				`fabricante_telefono`, 
-				`fabricante_contacto`, 
-				`sector`) 
+				`sector`, 
+				`idProveedorFabricante`, 
+				`estado`) 
 			VALUES (
-				:id,
+				:idMaquina,
 				:detalle,
 				:marca,
-				:fabricante_nombre,
-				:fabricante_direccion,
-				:fabricante_telefono,
-				:fabricante_contacto,
-				:sector)
+				:sector,
+				:idProveedorFabricante,
+				:estado)
 		");
 
-		$consulta->bindValue(':id', $this->id, PDO::PARAM_STR);
+		$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
 		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 		$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_nombre', $this->fabricante_nombre, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_direccion', $this->fabricante_direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_telefono', $this->fabricante_telefono, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_contacto', $this->fabricante_contacto, PDO::PARAM_STR);
 		$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
+		$consulta->bindValue(':idProveedorFabricante', $this->idProveedorFabricante, PDO::PARAM_STR);
+		$consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
+
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	}
@@ -70,10 +63,10 @@ class maquina
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
             $consulta = $objetoAccesoDato->RetornarConsulta("
-			DELETE FROM `maquina` WHERE `id` = :id
+			DELETE FROM `maquinas` WHERE `idMaquina` = :id
 			");
 
-            $consulta->bindValue(':id', $id, PDO::PARAM_STR);
+            $consulta->bindValue(':idMaquina', $id, PDO::PARAM_STR);
 
             $consulta->execute();
 
@@ -92,19 +85,18 @@ class maquina
 
 		$consulta = $objetoAccesoDato->RetornarConsulta(
 			"UPDATE
-			 `maquina` 
+			 `maquinas` 
 			 SET 
-			 `id`=:id, `detalle`=:detalle, `marca`=:marca, `sector`=:sector, `fabricante_nombre`=:fabricante_nombre, `fabricante_direccion`=:fabricante_direccion, `fabricante_telefono`=:fabricante_telefono, `fabricante_contacto`=:fabricante_contacto 
+			 `idMaquina`=:idMaquina, `detalle`=:detalle, `marca`=:marca, `sector`=:sector, `idProveedorFabricante`=:idProveedorFabricante, `estado`=:estado
 			 WHERE `id` = :id"
 			 );
-		$consulta->bindValue(':id', $this->id, PDO::PARAM_STR);	
-		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
-		$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
-		$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_nombre', $this->fabricante_nombre, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_direccion', $this->fabricante_direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_telefono', $this->fabricante_telefono, PDO::PARAM_STR);
-		$consulta->bindValue(':fabricante_contacto', $this->fabricante_contacto, PDO::PARAM_STR);
+
+			$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
+			$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
+			$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
+			$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
+			$consulta->bindValue(':idProveedorFabricante', $this->idProveedorFabricante, PDO::PARAM_STR);
+			$consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
 
 		return $consulta->execute();
 	}
