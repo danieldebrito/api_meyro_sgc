@@ -35,6 +35,8 @@ $app->group('/maquina', function () {
   $this->post('/update[/]', \maquinaApi::class . ':updateOne');
 });
 
+$app->delete('/maquina/{id}[/]', \maquinaAPI::class . ':delete');
+
 // cors habilitadas
 $app->add(function ($req, $res, $next) {
   $response = $next($req, $res);

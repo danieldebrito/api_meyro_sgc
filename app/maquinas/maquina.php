@@ -74,6 +74,29 @@ class maquina
 			return $consulta->rowCount();
 	}
 
+	public static function Baja($id)
+    {
+        try {
+            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+
+            $consulta = $objetoAccesoDato->RetornarConsulta("
+			DELETE FROM `maquina` WHERE `id` = :id
+			");
+
+            $consulta->bindValue(':id', $id, PDO::PARAM_STR);
+
+            $consulta->execute();
+
+            $respuesta = array("Estado" => true, "Mensaje" => "Mesa eliminada correctamente.");
+        } catch (Exception $e) {
+            $mensaje = $e->getMessage();
+            $respuesta = array("Estado" => false, "Mensaje" => "$mensaje");
+        }
+        finally {
+            return $respuesta;
+        }
+    }
+
 	public function ModificarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 

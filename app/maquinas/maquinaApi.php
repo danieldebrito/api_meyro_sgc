@@ -70,6 +70,14 @@ public function deleteOne($request, $response, $args) {
 		return $newResponse;
 }
 
+    ///Da de baja una mesa
+    public function delete($request,$response,$args){
+        $id = $args["id"];
+        $respuesta = maquina::Baja($id);
+        $newResponse = $response->withJson($respuesta,200);
+        return $newResponse;
+    }
+
 public function updateOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
