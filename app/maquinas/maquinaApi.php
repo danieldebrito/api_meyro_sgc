@@ -47,30 +47,6 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 		return $response;
 }
 
-public function deleteOne($request, $response, $args) {
-		$ArrayDeParametros = $request->getParsedBody();
-		$id=$ArrayDeParametros['id'];
-
-		$maquina = new maquina();
-		$maquina->id=$id;
-		$cantidadDeBorrados=$maquina->BorrarUno();
-
-
-		$objDelaRespuesta= new stdclass();
-		$objDelaRespuesta->cantidad=$cantidadDeBorrados;
-
-		if($cantidadDeBorrados>0){
-			$objDelaRespuesta->resultado = true;
-			} else {
-			$objDelaRespuesta->resultado = false;
-		}
-		
-		$newResponse = $response->withJson($objDelaRespuesta, 200);  
-
-		return $newResponse;
-}
-
-    ///Da de baja una mesa
     public function delete($request,$response,$args){
         $id = $args["id"];
         $respuesta = maquina::Baja($id);

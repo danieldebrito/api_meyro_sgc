@@ -26,16 +26,12 @@ $app->group('/maquina', function () {
     // +  body  +  form-data  y poner los parametros, 
   $this->post('/', \maquinaApi::class . ':setOne');
 
-    // http://localhost/api_meyro/index.php/pedido/ 
-    // + body + x-www.form.urlencoded y poner lo parametros
-  $this->delete('/', \maquinaApi::class . ':deleteOne');
+  $this->delete('/{id}[/]', \maquinaAPI::class . ':delete');
 
     // http://localhost/api_meyro/index.php/pedido/update 
     // +  body  +  form-data  y poner todos los tres parametros
   $this->post('/update[/]', \maquinaApi::class . ':updateOne');
 });
-
-$app->delete('/maquina/{id}[/]', \maquinaAPI::class . ':delete');
 
 // cors habilitadas
 $app->add(function ($req, $res, $next) {

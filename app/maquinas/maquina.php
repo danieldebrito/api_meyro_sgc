@@ -64,16 +64,6 @@ class maquina
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	}
 
-	public function BorrarUno(){
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("
-			DELETE FROM `maquina` WHERE `id` = :id
-			");	
-			$consulta->bindValue(':id', $this->id, PDO::PARAM_INT);		
-			$consulta->execute();
-			return $consulta->rowCount();
-	}
-
 	public static function Baja($id)
     {
         try {
