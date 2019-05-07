@@ -63,14 +63,14 @@ class maquina
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
             $consulta = $objetoAccesoDato->RetornarConsulta("
-			DELETE FROM `maquinas` WHERE `idMaquina` = :id
+			DELETE FROM `maquinas` WHERE `idMaquina` = $id
 			");
 
             $consulta->bindValue(':idMaquina', $id, PDO::PARAM_STR);
 
             $consulta->execute();
 
-            $respuesta = array("Estado" => true, "Mensaje" => "Mesa eliminada correctamente.");
+            $respuesta = array("Estado" => true, "Mensaje" => "Eliminado Correctamente");
         } catch (Exception $e) {
             $mensaje = $e->getMessage();
             $respuesta = array("Estado" => false, "Mensaje" => "$mensaje");
