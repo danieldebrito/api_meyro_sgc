@@ -16,13 +16,13 @@ $app->get("/test", function() {
 });
 
 $app->group('/maquina', function () {
-    // http://localhost/api_meyro/index.php/pedido/01
+    // http://localhost/api_meyro_sgc/app/index.php/maquina
   $this->get('/', \maquinaApi::class . ':getAll');
 
     // http://localhost/api_meyro/index.php/pedido/
   $this->get('/{id}', \maquinaApi::class . ':getOne');
 
-    // http://localhost/api_meyro/index.php/pedido/   
+    // http://localhost/api_meyro_sgc/index.php/maquina/  
     // +  body  +  form-data  y poner los parametros, 
   $this->post('/', \maquinaApi::class . ':setOne');
 

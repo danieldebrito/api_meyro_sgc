@@ -20,25 +20,29 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
  public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
-		$id = $ArrayDeParametros['id'];
+		$idMaquina = $ArrayDeParametros['idMaquina'];
 		$detalle = $ArrayDeParametros['detalle'];
 		$marca = $ArrayDeParametros['marca'];
 		$sector = $ArrayDeParametros['sector'];
-		$fabricante_nombre = $ArrayDeParametros['fabricante_nombre'];
-		$fabricante_direccion = $ArrayDeParametros['fabricante_direccion'];
-		$fabricante_telefono = $ArrayDeParametros['fabricante_telefono'];
-		$fabricante_contacto = $ArrayDeParametros['fabricante_contacto'];
+		$estado = $ArrayDeParametros['estado'];
+		$imagen = $ArrayDeParametros['imagen'];
+		$fabricanteNombre = $ArrayDeParametros['fabricanteNombre'];
+		$fabricanteDireccion = $ArrayDeParametros['fabricanteDireccion'];
+		$fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
+		$fabricanteContacto = $ArrayDeParametros['fabricanteContacto'];
 
 		$maquina = new maquina();
 
-		$maquina->id=$id;
+		$maquina->idMaquina=$idMaquina;
 		$maquina->detalle=$detalle;
 		$maquina->marca=$marca;
 		$maquina->sector=$sector;
-		$maquina->fabricante_nombre=$fabricante_nombre;
-		$maquina->fabricante_direccion=$fabricante_direccion;
-		$maquina->fabricante_telefono=$fabricante_telefono;
-		$maquina->fabricante_contacto=$fabricante_contacto;
+		$maquina->estado=$estado;
+		$maquina->imagen=$imagen;
+		$maquina->fabricanteNombre=$fabricanteNombre;
+		$maquina->fabricanteDireccion=$fabricanteDireccion;
+		$maquina->fabricanteTelefono=$fabricanteTelefono;
+		$maquina->fabricanteContacto=$fabricanteContacto;
 		
 		$maquina->CargarUno();
 

@@ -5,8 +5,13 @@ class maquina
  	public $detalle;
   	public $marca;
 	public $sector;
-	public $idProveedorFabricante;
 	public $estado;
+	public $imagen;
+	public $fabricanteNombre;
+	public $fabricanteDireccion;
+	public $fabricanteTelefono;
+	public $fabricanteContacto;
+
 
 	public static function TraerTodos(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -35,23 +40,35 @@ class maquina
 				`detalle`, 
 				`marca`, 
 				`sector`, 
-				`idProveedorFabricante`, 
-				`estado`) 
+				`estado`, 
+				`imagen`,
+				`fabricanteNombre`,
+				`fabricanteDireccion`,
+				`fabricanteTelefono`,
+				`fabricanteContacto`)
 			VALUES (
 				:idMaquina,
 				:detalle,
 				:marca,
 				:sector,
-				:idProveedorFabricante,
-				:estado)
+				:estado,
+				:imagen,
+				:fabricanteNombre,
+				:fabricanteDireccion,
+				:fabricanteTelefono,
+				:fabricanteContacto)
 		");
 
 		$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
 		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 		$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
 		$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
-		$consulta->bindValue(':idProveedorFabricante', $this->idProveedorFabricante, PDO::PARAM_STR);
 		$consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
+		$consulta->bindValue(':imagen', $this->imagen, PDO::PARAM_STR);
+		$consulta->bindValue(':fabricanteNombre', $this->fabricanteNombre, PDO::PARAM_STR);
+		$consulta->bindValue(':fabricanteDireccion', $this->fabricanteDireccion, PDO::PARAM_STR);
+		$consulta->bindValue(':fabricanteTelefono', $this->fabricanteTelefono, PDO::PARAM_STR);
+		$consulta->bindValue(':fabricanteContacto', $this->fabricanteContacto, PDO::PARAM_STR);
 
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
