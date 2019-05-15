@@ -58,27 +58,31 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
         return $newResponse;
     }
 
-public function updateOne($request, $response, $args) {
+	public function updateOne($request, $response, $args) {
+
 		$ArrayDeParametros = $request->getParsedBody();
 
-		$miMaquina = new maquina();
+	   var_dump($ArrayDeParametros);    	
+	   
+	   $MiMaquina = new maquina();
 
-		$miMaquina->idMaquina = $ArrayDeParametros['idMaquina'];
-		$miMaquina->detalle = $ArrayDeParametros['detalle'];
-		$miMaquina->marca = $ArrayDeParametros['marca'];
-		$miMaquina->sector = $ArrayDeParametros['sector'];
-		$miMaquina->estado = $ArrayDeParametros['estado'];
-		$miMaquina->urlImagen = $ArrayDeParametros['urlImagen'];
-		$miMaquina->fabricanteNombre = $ArrayDeParametros['fabricanteNombre'];
-		$miMaquina->fabricanteDireccion = $ArrayDeParametros['fabricanteDireccion'];
-		$miMaquina->fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
-		$miMaquina->fabricanteContacto = $ArrayDeParametros['fabricanteContacto'];
-	
-		$resultado = $miMaquina->ModificarUno();
-		
+	   $MiMaquina->idMaquina=$ArrayDeParametros["idMaquina"];
+	   $MiMaquina->detalle=$ArrayDeParametros["detalle"];
+	   $MiMaquina->marca=$ArrayDeParametros["marca"];
+	   $MiMaquina->sector=$ArrayDeParametros["sector"];
+	   $MiMaquina->estado=$ArrayDeParametros["estado"];
+	   $MiMaquina->urlImagen=$ArrayDeParametros["urlImagen"];
+	   $MiMaquina->fabricanteNombre=$ArrayDeParametros["fabricanteNombre"];
+	   $MiMaquina->fabricanteDireccion=$ArrayDeParametros["fabricanteDireccion"];
+	   $MiMaquina->fabricanteTelefono=$ArrayDeParametros["fabricanteTelefono"];
+	   $MiMaquina->fabricanteContacto=$ArrayDeParametros["fabricanteContacto"];
+
+		$resultado = $MiMaquina->ModificarUno();
 		$objDelaRespuesta= new stdclass();
-		$objDelaRespuesta->resultado = $resultado;
-			
-		return $response->withJson($objDelaRespuesta, 200);		
-	}
+
+	   // var_dump($resultado);
+
+	   $objDelaRespuesta->resultado=$resultado;
+	   return $response->withJson($objDelaRespuesta, 200);		
+   }
 }

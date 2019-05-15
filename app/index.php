@@ -19,16 +19,16 @@ $app->group('/maquina', function () {
     // http://localhost/api_meyro_sgc/app/index.php/maquina
   $this->get('/', \maquinaApi::class . ':getAll');
 
-    // http://localhost/api_meyro/index.php/pedido/
+    // http://localhost/api_meyro_sgc/app/index.php/maquina
   $this->get('/{id}', \maquinaApi::class . ':getOne');
 
-    // http://localhost/api_meyro_sgc/index.php/maquina/  
+    // http://localhost/api_meyro_sgc/app/index.php/maquina  
     // +  body  +  form-data  y poner los parametros, 
   $this->post('/', \maquinaApi::class . ':setOne');
 
   $this->delete('/{id}[/]', \maquinaAPI::class . ':delete');
 
-    // http://localhost/api_meyro/index.php/pedido/update 
+    // http://localhost/api_meyro_sgc/app/index.php/maquina/update
     // +  body  +  form-data  y poner todos los parametros
   $this->post('/update[/]', \maquinaApi::class . ':updateOne');
 });

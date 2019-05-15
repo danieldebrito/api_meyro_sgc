@@ -25,7 +25,7 @@ class maquina
 	public static function TraerUno($id) {
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `maquinas` WHERE `idMaquina` =  $id
+		SELECT * FROM `maquinas` WHERE `idMaquina` =  $idMaquina
 		");
 		$consulta->execute();
 		$maquina = $consulta->fetchObject('maquina');
@@ -41,21 +41,21 @@ class maquina
 				`marca`, 
 				`sector`, 
 				`estado`, 
-				`urlImagen`,
-				`fabricanteNombre`,
-				`fabricanteDireccion`,
-				`fabricanteTelefono`,
+				`urlImagen`, 
+				`fabricanteNombre`, 
+				`fabricanteDireccion`, 
+				`fabricanteTelefono`, 
 				`fabricanteContacto`)
 			VALUES (
-				:idMaquina,
-				:detalle,
-				:marca,
-				:sector,
-				:estado,
-				:urlImagen,
-				:fabricanteNombre,
-				:fabricanteDireccion,
-				:fabricanteTelefono,
+				:idMaquina, 
+				:detalle, 
+				:marca, 
+				:sector, 
+				:estado, 
+				:urlImagen, 
+				:fabricanteNombre, 
+				:fabricanteDireccion, 
+				:fabricanteTelefono, 
 				:fabricanteContacto)
 		");
 
@@ -95,39 +95,34 @@ class maquina
         finally {
             return $respuesta;
         }
-    }
+	}
+	
+ 	public function ModificarUno(){
 
-	public function ModificarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+		   
+		
+		   
+		$consulta =$objetoAccesoDato->RetornarConsulta("
+		UPDATE `maquinas` SET 
+		   `idMaquina`=:idMaquina', `detalle`=:detalle, `marca`=:marca, `sector`=:sector, `estado`=:estado, `urlImagen`=:urlImagen, `fabricanteNombre`=:fabricanteNombre, `fabricanteDireccion`=:fabricanteDireccion, `fabricanteTelefono`=:fabricanteTelefono, `fabricanteContacto`=:fabricanteContacto 
+		   WHERE 
+		   `idMaquina`=:idMaquina
+		");  
 
-		$consulta = $objetoAccesoDato->RetornarConsulta(
-			"UPDATE
-			 `maquinas` 
-			 SET 
-			 `idMaquina`=:idMaquina, 
-			 `detalle`=:detalle, 
-			 `marca`=:marca, 
-			 `sector`=:sector, 
-			 `estado`=:estado, 
-			 `urlImagen`=:urlImagen,
-			 `fabricanteNombre`=:fabricanteNombre, 
-			 `fabricanteDireccion`=:fabricanteDireccion, 
-			 `fabricanteTelefono`=:fabricanteTelefono, 
-			 `fabricanteContacto`=:fabricanteContacto
-			 WHERE `idMaquina` = :idMaquina"
-			 );
+		var_dump($consulta);
 
-			$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
-			$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
-			$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
-			$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
-			$consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
-			$consulta->bindValue(':urlImagen', $this->urlImagen, PDO::PARAM_STR);
-			$consulta->bindValue(':fabricanteNombre', $this->fabricanteNombre, PDO::PARAM_STR);
-			$consulta->bindValue(':fabricanteDireccion', $this->fabricanteDireccion, PDO::PARAM_STR);
-			$consulta->bindValue(':fabricanteTelefono', $this->fabricanteTelefono, PDO::PARAM_STR);
-			$consulta->bindValue(':fabricanteContacto', $this->fabricanteContacto, PDO::PARAM_STR);
+		  $consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_INT);
+		  $consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
+		  $consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
+		  $consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
+		  $consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
+		  $consulta->bindValue(':urlImagen', $this->urlImagen, PDO::PARAM_STR);
+		  $consulta->bindValue(':fabricanteNombre', $this->fabricanteNombre, PDO::PARAM_STR);
+		  $consulta->bindValue(':fabricanteDireccion', $this->fabricanteDireccion, PDO::PARAM_STR);
+		  $consulta->bindValue(':fabricanteTelefono', $this->fabricanteTelefono, PDO::PARAM_STR);
+		  $consulta->bindValue(':fabricanteContacto', $this->fabricanteContacto, PDO::PARAM_STR);
 
-		return $consulta->execute();
+		  return $consulta->execute();
 	}
 }
