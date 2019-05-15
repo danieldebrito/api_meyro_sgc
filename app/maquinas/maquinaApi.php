@@ -25,7 +25,7 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 		$marca = $ArrayDeParametros['marca'];
 		$sector = $ArrayDeParametros['sector'];
 		$estado = $ArrayDeParametros['estado'];
-		$imagen = $ArrayDeParametros['imagen'];
+		$urlImagen = $ArrayDeParametros['urlImagen'];
 		$fabricanteNombre = $ArrayDeParametros['fabricanteNombre'];
 		$fabricanteDireccion = $ArrayDeParametros['fabricanteDireccion'];
 		$fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
@@ -38,7 +38,7 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 		$maquina->marca=$marca;
 		$maquina->sector=$sector;
 		$maquina->estado=$estado;
-		$maquina->imagen=$imagen;
+		$maquina->urlImagen=$urlImagen;
 		$maquina->fabricanteNombre=$fabricanteNombre;
 		$maquina->fabricanteDireccion=$fabricanteDireccion;
 		$maquina->fabricanteTelefono=$fabricanteTelefono;

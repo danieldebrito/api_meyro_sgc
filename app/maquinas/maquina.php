@@ -6,7 +6,7 @@ class maquina
   	public $marca;
 	public $sector;
 	public $estado;
-	public $imagen;
+	public $urlImagen;
 	public $fabricanteNombre;
 	public $fabricanteDireccion;
 	public $fabricanteTelefono;
@@ -41,7 +41,7 @@ class maquina
 				`marca`, 
 				`sector`, 
 				`estado`, 
-				`imagen`,
+				`urlImagen`,
 				`fabricanteNombre`,
 				`fabricanteDireccion`,
 				`fabricanteTelefono`,
@@ -52,7 +52,7 @@ class maquina
 				:marca,
 				:sector,
 				:estado,
-				:imagen,
+				:urlImagen,
 				:fabricanteNombre,
 				:fabricanteDireccion,
 				:fabricanteTelefono,
@@ -64,7 +64,7 @@ class maquina
 		$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
 		$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
 		$consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
-		$consulta->bindValue(':imagen', $this->imagen, PDO::PARAM_STR);
+		$consulta->bindValue(':urlImagen', $this->urlImagen, PDO::PARAM_STR);
 		$consulta->bindValue(':fabricanteNombre', $this->fabricanteNombre, PDO::PARAM_STR);
 		$consulta->bindValue(':fabricanteDireccion', $this->fabricanteDireccion, PDO::PARAM_STR);
 		$consulta->bindValue(':fabricanteTelefono', $this->fabricanteTelefono, PDO::PARAM_STR);
