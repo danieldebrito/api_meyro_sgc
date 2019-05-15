@@ -104,16 +104,29 @@ class maquina
 			"UPDATE
 			 `maquinas` 
 			 SET 
-			 `idMaquina`=:idMaquina, `detalle`=:detalle, `marca`=:marca, `sector`=:sector, `idProveedorFabricante`=:idProveedorFabricante, `estado`=:estado
-			 WHERE `id` = :id"
+			 `idMaquina`=:idMaquina, 
+			 `detalle`=:detalle, 
+			 `marca`=:marca, 
+			 `sector`=:sector, 
+			 `estado`=:estado, 
+			 `urlImagen`=:urlImagen,
+			 `fabricanteNombre`=:fabricanteNombre, 
+			 `fabricanteDireccion`=:fabricanteDireccion, 
+			 `fabricanteTelefono`=:fabricanteTelefono, 
+			 `fabricanteContacto`=:fabricanteContacto
+			 WHERE `idMaquina` = :idMaquina"
 			 );
 
 			$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
 			$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 			$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
 			$consulta->bindValue(':sector', $this->sector, PDO::PARAM_STR);
-			$consulta->bindValue(':idProveedorFabricante', $this->idProveedorFabricante, PDO::PARAM_STR);
 			$consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
+			$consulta->bindValue(':urlImagen', $this->urlImagen, PDO::PARAM_STR);
+			$consulta->bindValue(':fabricanteNombre', $this->fabricanteNombre, PDO::PARAM_STR);
+			$consulta->bindValue(':fabricanteDireccion', $this->fabricanteDireccion, PDO::PARAM_STR);
+			$consulta->bindValue(':fabricanteTelefono', $this->fabricanteTelefono, PDO::PARAM_STR);
+			$consulta->bindValue(':fabricanteContacto', $this->fabricanteContacto, PDO::PARAM_STR);
 
 		return $consulta->execute();
 	}

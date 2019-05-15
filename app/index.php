@@ -29,7 +29,7 @@ $app->group('/maquina', function () {
   $this->delete('/{id}[/]', \maquinaAPI::class . ':delete');
 
     // http://localhost/api_meyro/index.php/pedido/update 
-    // +  body  +  form-data  y poner todos los tres parametros
+    // +  body  +  form-data  y poner todos los parametros
   $this->post('/update[/]', \maquinaApi::class . ':updateOne');
 });
 

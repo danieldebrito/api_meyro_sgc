@@ -63,14 +63,16 @@ public function updateOne($request, $response, $args) {
 
 		$miMaquina = new maquina();
 
-		$miMaquina->id = $ArrayDeParametros['id'];
+		$miMaquina->idMaquina = $ArrayDeParametros['idMaquina'];
 		$miMaquina->detalle = $ArrayDeParametros['detalle'];
 		$miMaquina->marca = $ArrayDeParametros['marca'];
 		$miMaquina->sector = $ArrayDeParametros['sector'];
-		$miMaquina->fabricante_nombre = $ArrayDeParametros['fabricante_nombre'];
-		$miMaquina->fabricante_direccion = $ArrayDeParametros['fabricante_direccion'];
-		$miMaquina->fabricante_telefono = $ArrayDeParametros['fabricante_telefono'];
-		$miMaquina->fabricante_contacto = $ArrayDeParametros['fabricante_contacto'];
+		$miMaquina->estado = $ArrayDeParametros['estado'];
+		$miMaquina->urlImagen = $ArrayDeParametros['urlImagen'];
+		$miMaquina->fabricanteNombre = $ArrayDeParametros['fabricanteNombre'];
+		$miMaquina->fabricanteDireccion = $ArrayDeParametros['fabricanteDireccion'];
+		$miMaquina->fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
+		$miMaquina->fabricanteContacto = $ArrayDeParametros['fabricanteContacto'];
 	
 		$resultado = $miMaquina->ModificarUno();
 		
