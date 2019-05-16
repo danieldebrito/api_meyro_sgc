@@ -12,39 +12,25 @@ class especificacionApi extends especificacion /* implements IApiUsable */ {
 
 	public function getOne($request, $response, $args) {
 		$id=$args['id'];
-	 	$maquinaRetorno = maquina::TraerUno($id);
-		$newResponse = $response->withJson($maquinaRetorno, 200);  
+	 	$ret = Especificacion::TraerUno($id);
+		$newResponse = $response->withJson($ret, 200);  
 	 	return $newResponse;
  }
 
  public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
+		//$idEspecificacion = $ArrayDeParametros['idEspecificacion'];
 		$idMaquina = $ArrayDeParametros['idMaquina'];
 		$detalle = $ArrayDeParametros['detalle'];
-		$marca = $ArrayDeParametros['marca'];
-		$sector = $ArrayDeParametros['sector'];
-		$estado = $ArrayDeParametros['estado'];
-		$urlImagen = $ArrayDeParametros['urlImagen'];
-		$fabricanteNombre = $ArrayDeParametros['fabricanteNombre'];
-		$fabricanteDireccion = $ArrayDeParametros['fabricanteDireccion'];
-		$fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
-		$fabricanteContacto = $ArrayDeParametros['fabricanteContacto'];
 
-		$maquina = new maquina();
+		$ent = new Especificacion();
 
-		$maquina->idMaquina=$idMaquina;
-		$maquina->detalle=$detalle;
-		$maquina->marca=$marca;
-		$maquina->sector=$sector;
-		$maquina->estado=$estado;
-		$maquina->urlImagen=$urlImagen;
-		$maquina->fabricanteNombre=$fabricanteNombre;
-		$maquina->fabricanteDireccion=$fabricanteDireccion;
-		$maquina->fabricanteTelefono=$fabricanteTelefono;
-		$maquina->fabricanteContacto=$fabricanteContacto;
+		//$ent->idEspecificacion=$idEspecificacion;
+		$ent->idMaquina=$idMaquina;
+		$ent->detalle=$detalle;
 		
-		$maquina->CargarUno();
+		$ent->CargarUno();
 
 		$response->getBody()->write("true");
 
@@ -53,7 +39,7 @@ class especificacionApi extends especificacion /* implements IApiUsable */ {
 
     public function delete($request,$response,$args){
         $id = $args["id"];
-        $respuesta = maquina::Baja($id);
+        $respuesta = Especificacion::Baja($id);
         $newResponse = $response->withJson($respuesta,200);
         return $newResponse;
     }
@@ -61,20 +47,13 @@ class especificacionApi extends especificacion /* implements IApiUsable */ {
 public function updateOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
-		$miMaquina = new maquina();
+		$me = new Especificacion();
 
-		$miMaquina->idMaquina = $ArrayDeParametros['idMaquina'];
-		$miMaquina->detalle = $ArrayDeParametros['detalle'];
-		$miMaquina->marca = $ArrayDeParametros['marca'];
-		$miMaquina->sector = $ArrayDeParametros['sector'];
-		$miMaquina->estado = $ArrayDeParametros['estado'];
-		$miMaquina->urlImagen = $ArrayDeParametros['urlImagen'];
-		$miMaquina->fabricanteNombre = $ArrayDeParametros['fabricanteNombre'];
-		$miMaquina->fabricanteDireccion = $ArrayDeParametros['fabricanteDireccion'];
-		$miMaquina->fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
-		$miMaquina->fabricanteContacto = $ArrayDeParametros['fabricanteContacto'];
-	
-		$resultado = $miMaquina->ModificarUno();
+		$me->idEspecificacion = $ArrayDeParametros['idEspecificacion'];
+		$me->idMaquina = $ArrayDeParametros['idMaquina'];
+		$me->detalle = $ArrayDeParametros['detalle'];
+
+		$resultado = $me->ModificarUno();
 		
 		$objDelaRespuesta= new stdclass();
 		$objDelaRespuesta->resultado = $resultado;

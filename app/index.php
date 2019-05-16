@@ -4,7 +4,8 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../composer/vendor/autoload.php';
 require './AccesoDatos.php';
-// entidades //////////////////////////////////////////////////////////////
+
+///////////////////////////////////// entidades ///////////
 require './maquina/maquinas/maquinaApi.php';
 require './maquina/especificaciones/especificacionApi.php';
 
@@ -18,39 +19,35 @@ $app->get("/test", function() {
 });
 
 $app->group('/maquina', function () {
-    // http://localhost/api_meyro_sgc/app/index.php/maquina
+    // http://localhost/api_meyro_sgc/app/index.php/maquina/
   $this->get('/', \maquinaApi::class . ':getAll');
 
-    // http://localhost/api_meyro_sgc/app/index.php/maquina
+    // http://localhost/api_meyro_sgc/app/index.php/maquina/200
   $this->get('/{id}', \maquinaApi::class . ':getOne');
 
-    // http://localhost/api_meyro_sgc/app/index.php/maquina  
+    // http://localhost/api_meyro_sgc/app/index.php/maquina/  
     // +  body  +  form-data  y poner los parametros, 
   $this->post('/', \maquinaApi::class . ':setOne');
 
   $this->delete('/{id}[/]', \maquinaAPI::class . ':delete');
 
-    // http://localhost/api_meyro_sgc/app/index.php/maquina/update
+    // http://localhost/api_meyro_sgc/app/index.php/maquina/update/
     // +  body  +  form-data  y poner todos los parametros
-  $this->post('/update[/]', \maquinaApi::class . ':updateOne');
+  $this->post('/update[/]', \maquinaApi::class . ':updateOne');    ////////  VER NO FUNCA
 });
 
+
 $app->group('/especificacion', function () {
-  // http://localhost/api_meyro_sgc/app/index.php/especificacion
+// http://localhost/api_meyro_sgc/app/index.php/especificacion/
 $this->get('/', \especificacionApi::class . ':getAll');
-/*
-  // http://localhost/api_meyro/index.php/pedido/
-$this->get('/{id}', \maquinaApi::class . ':getOne');
-
-  // http://localhost/api_meyro_sgc/index.php/maquina/  
-  // +  body  +  form-data  y poner los parametros, 
-$this->post('/', \maquinaApi::class . ':setOne');
-
-$this->delete('/{id}[/]', \maquinaAPI::class . ':delete');
-
-  // http://localhost/api_meyro/index.php/pedido/update 
-  // +  body  +  form-data  y poner todos los parametros*/
-$this->post('/update[/]', \maquinaApi::class . ':updateOne');
+// http://localhost/api_meyro_sgc/app/index.php/especificacion/17
+$this->get('/{id}', \especificacionApi::class . ':getOne');
+// http://localhost/api_meyro_sgc/app/index.php/especificacion/
+$this->post('/', \especificacionApi::class . ':setOne');
+// http://localhost/api_meyro_sgc/app/index.php/especificacion/17
+$this->delete('/{id}[/]', \especificacionApi::class . ':delete');
+// http://localhost/api_meyro_sgc/app/index.php/especificacion/update/
+$this->post('/update[/]', \especificacionApi::class . ':updateOne');
 });
 
 // cors habilitadas

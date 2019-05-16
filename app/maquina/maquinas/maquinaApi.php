@@ -66,7 +66,7 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 	   
 	   $MiMaquina = new maquina();
 
-	   $MiMaquina->idMaquina=$ArrayDeParametros["idMaquina"];
+	   // $MiMaquina->idMaquina=$ArrayDeParametros["idMaquina"];
 	   $MiMaquina->detalle=$ArrayDeParametros["detalle"];
 	   $MiMaquina->marca=$ArrayDeParametros["marca"];
 	   $MiMaquina->sector=$ArrayDeParametros["sector"];
@@ -79,8 +79,6 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 
 		$resultado = $MiMaquina->ModificarUno();
 		$objDelaRespuesta= new stdclass();
-
-	   // var_dump($resultado);
 
 	   $objDelaRespuesta->resultado=$resultado;
 	   return $response->withJson($objDelaRespuesta, 200);		

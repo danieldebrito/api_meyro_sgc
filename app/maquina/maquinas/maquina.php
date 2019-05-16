@@ -25,7 +25,7 @@ class maquina
 	public static function TraerUno($id) {
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `maquinas` WHERE `idMaquina` =  $idMaquina
+		SELECT * FROM `maquinas` WHERE `idMaquina` =  $id
 		");
 		$consulta->execute();
 		$maquina = $consulta->fetchObject('maquina');
@@ -98,19 +98,23 @@ class maquina
 	}
 	
  	public function ModificarUno(){
-
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-		   
-		
 		   
 		$consulta =$objetoAccesoDato->RetornarConsulta("
 		UPDATE `maquinas` SET 
-		   `idMaquina`=:idMaquina', `detalle`=:detalle, `marca`=:marca, `sector`=:sector, `estado`=:estado, `urlImagen`=:urlImagen, `fabricanteNombre`=:fabricanteNombre, `fabricanteDireccion`=:fabricanteDireccion, `fabricanteTelefono`=:fabricanteTelefono, `fabricanteContacto`=:fabricanteContacto 
+		   `idMaquina`=:idMaquina',
+		   `detalle`=:detalle,
+		   `marca`=:marca,
+		   `sector`=:sector,
+		   `estado`=:estado,
+		   `urlImagen`=:urlImagen,
+		   `fabricanteNombre`=:fabricanteNombre,
+		   `fabricanteDireccion`=:fabricanteDireccion,
+		   `fabricanteTelefono`=:fabricanteTelefono,
+		   `fabricanteContacto`=:fabricanteContacto 
 		   WHERE 
 		   `idMaquina`=:idMaquina
 		");  
-
-		var_dump($consulta);
 
 		  $consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_INT);
 		  $consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
