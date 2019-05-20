@@ -60,4 +60,11 @@ public function updateOne($request, $response, $args) {
 			
 		return $response->withJson($objDelaRespuesta, 200);		
 	}
+
+	public function getAllMaquina($request, $response, $args) {
+		$idMaquina = $args['id'];
+	 	$ret = Especificacion::TraerTodosMaquina($idMaquina);
+		$newResponse = $response->withJson($ret, 200);  
+	 	return $newResponse;
+ 	}
 }

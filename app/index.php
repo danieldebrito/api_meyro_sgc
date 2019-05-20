@@ -37,11 +37,14 @@ $app->group('/maquina', function () {
 });
 
 
+
 $app->group('/especificacion', function () {
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/
 $this->get('/', \especificacionApi::class . ':getAll');
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/17
 $this->get('/{id}', \especificacionApi::class . ':getOne');
+
+$this->get('/maquinas/{id}', \especificacionApi::class . ':getAllMaquina');
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/
 $this->post('/', \especificacionApi::class . ':setOne');
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/17
