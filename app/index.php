@@ -55,6 +55,7 @@ $this->post('/update[/]', \especificacionApi::class . ':updateOne');
 
 $app->group('/maquinaRepuesto', function () {
   $this->get('/', \repuestoApi::class . ':getAll');
+  $this->get('/porMaquina/{id}[/]', \repuestoApi::class . ':getAllMachine');
   $this->get('/{id}', \repuestoApi::class . ':getOne');
   $this->post('/', \repuestoApi::class . ':setOne');
   $this->delete('/{id}[/]', \repuestoApi::class . ':delete');
