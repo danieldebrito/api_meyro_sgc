@@ -8,6 +8,8 @@ require './AccesoDatos.php';
 ///////////////////////////////////// entidades ///////////
 require './maquina/maquinas/maquinaApi.php';
 require './maquina/especificaciones/especificacionApi.php';
+require './maquina/repuestos/repuestoApi.php';
+
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -36,8 +38,6 @@ $app->group('/maquina', function () {
   $this->post('/update[/]', \maquinaApi::class . ':updateOne');    ////////  VER NO FUNCA
 });
 
-
-
 $app->group('/especificacion', function () {
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/
 $this->get('/', \especificacionApi::class . ':getAll');
@@ -52,6 +52,14 @@ $this->delete('/{id}[/]', \especificacionApi::class . ':delete');
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/update/
 $this->post('/update[/]', \especificacionApi::class . ':updateOne');
 });
+
+$app->group('/maquinaRepuesto', function () {
+  $this->get('/', \repuestoApi::class . ':getAll');
+  $this->get('/{id}', \repuestoApi::class . ':getOne');
+  $this->post('/', \repuestoApi::class . ':setOne');
+  $this->delete('/{id}[/]', \repuestoApi::class . ':delete');
+  $this->post('/update[/]', \repuestoApi::class . ':updateOne');
+  });
 
 // cors habilitadas
 $app->add(function ($req, $res, $next) {
