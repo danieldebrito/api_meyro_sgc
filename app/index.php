@@ -9,7 +9,7 @@ require './AccesoDatos.php';
 require './maquina/maquinas/maquinaApi.php';
 require './maquina/especificaciones/especificacionApi.php';
 require './maquina/repuestos/repuestoApi.php';
-
+require './maquina/repuestos/maquina_repuestoApi.php';
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -60,6 +60,11 @@ $app->group('/maquinaRepuesto', function () {
   $this->post('/', \repuestoApi::class . ':setOne');
   $this->delete('/{id}[/]', \repuestoApi::class . ':delete');
   $this->post('/update[/]', \repuestoApi::class . ':updateOne');
+  });
+
+  $app->group('/maqRto', function () {
+    $this->post('/', \MaquinaRepuesto::class . ':setOne');
+    $this->delete('/{id}[/]', \MaquinaRepuesto::class . ':delete');
   });
 
 // cors habilitadas
