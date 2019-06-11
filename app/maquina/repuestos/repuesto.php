@@ -62,7 +62,7 @@ class Repuesto{
 	}
 	
 	//  ver no funca
-
+/*
 	public static function ModificarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
@@ -77,12 +77,15 @@ class Repuesto{
 			$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 
 		return $consulta->execute();
-	}
+	}*/
 
 	public static function TraerTodosMaquina($id){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM repuesto_maquina WHERE idMaquina = $id
+		SELECT repuestos.idRepuesto, repuestos.detalle, repuestos.marca, repuestos.codigo
+		FROM repuestos INNER JOIN maquina_repuesto  
+		ON repuestos.idRepuesto = maquina_repuesto.idRepuesto 
+		WHERE maquina_repuesto.idMaquina = $id
 		");
 		$consulta->execute();		
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "Repuesto");		
