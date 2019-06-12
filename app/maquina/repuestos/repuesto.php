@@ -1,9 +1,10 @@
 <?php
 class Repuesto{
 	 public $idRepuesto;
+	 public $idMaquina;
+	 public $detalle;
 	 public $marca;
 	 public $codigo;
-	 public $detalle;
 
 	public static function TraerTodos(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -27,13 +28,14 @@ class Repuesto{
 	public function CargarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
-		INSERT INTO `repuestos`(`marca`, `codigo`, `detalle`) 
-		VALUES (:marca, :codigo, :detalle)
+		INSERT INTO `repuestos`(`idMaquina`, `detalle`, `marca`, `codigo`) 
+		VALUES (:idMaquina, :detalle, :marca, :codigo)
 		");
 
+		$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
+		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 		$consulta->bindValue(':marca', $this->marca, PDO::PARAM_STR);
 		$consulta->bindValue(':codigo', $this->codigo, PDO::PARAM_STR);
-		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
@@ -79,6 +81,8 @@ class Repuesto{
 		return $consulta->execute();
 	}*/
 
+	/*
+
 	public static function TraerTodosMaquina($id){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("
@@ -86,6 +90,15 @@ class Repuesto{
 		FROM repuestos INNER JOIN maquina_repuesto  
 		ON repuestos.idRepuesto = maquina_repuesto.idRepuesto 
 		WHERE maquina_repuesto.idMaquina = $id
+		");
+		$consulta->execute();		
+		return $consulta->fetchAll(PDO::FETCH_CLASS, "Repuesto");		
+	}*/
+
+	public static function TraerTodosMaquina($id){
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("
+		SELECT * FROM `repuestos` WHERE `idMaquina` = $id
 		");
 		$consulta->execute();		
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "Repuesto");		

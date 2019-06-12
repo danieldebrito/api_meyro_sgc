@@ -14,9 +14,9 @@ class MaquinaRepuestoApi extends MaquinaRepuesto {
 		$ent->idMaquina=$idMaquina;
 		$ent->idRepuesto=$idRepuesto;
 		
-		$ent->CargarUno();
+		$response = $ent->CargarUno();
 
-		$response->getBody()->write("true");
+		// $response->getBody()->write("true");
 
 		return $response;
 	}

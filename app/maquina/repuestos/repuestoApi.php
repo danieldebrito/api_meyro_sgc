@@ -20,15 +20,17 @@ class repuestoApi extends repuesto /* implements IApiUsable */ {
  	public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
+		$idMaquina = $ArrayDeParametros['idMaquina'];
+		$detalle = $ArrayDeParametros['detalle'];
 		$marca = $ArrayDeParametros['marca'];
 		$codigo = $ArrayDeParametros['codigo'];
-		$detalle = $ArrayDeParametros['detalle'];
 
 		$ent = new Repuesto();
 
+		$ent->idMaquina=$idMaquina;
+		$ent->detalle=$detalle;
 		$ent->marca=$marca;
 		$ent->codigo=$codigo;
-		$ent->detalle=$detalle;
 		
 		$ent->CargarUno();
 
@@ -50,9 +52,10 @@ class repuestoApi extends repuesto /* implements IApiUsable */ {
 		$me = new Repuesto();
 
 		$me->idRepuesto = $ArrayDeParametros['idRepuesto'];
+		$me->idMaquina = $ArrayDeParametros['idMaquina'];
+		$me->detalle = $ArrayDeParametros['detalle'];
 		$me->marca = $ArrayDeParametros['marca'];
 		$me->codigo = $ArrayDeParametros['codigo'];
-		$me->detalle = $ArrayDeParametros['detalle'];
 
 		$resultado = $me->ModificarUno();
 		
