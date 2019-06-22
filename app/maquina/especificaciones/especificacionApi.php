@@ -66,5 +66,12 @@ public function updateOne($request, $response, $args) {
 	 	$ret = Especificacion::TraerTodosMaquina($idMaquina);
 		$newResponse = $response->withJson($ret, 200);  
 	 	return $newResponse;
- 	}
+	 }
+	 
+	 public function deleteTodosMaquina($request,$response,$args){
+        $id = $args["id"];
+        $respuesta = Especificacion::BajaTodosMaquina($id);
+        $newResponse = $response->withJson($respuesta,200);
+        return $newResponse;
+    }
 }

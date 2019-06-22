@@ -93,4 +93,29 @@ class Especificacion
 		$consulta->execute();		
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "Especificacion");		
 	}
+
+	public function BajaTodosMaquina($id)
+    {
+        try {
+            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+
+            $consulta = $objetoAccesoDato->RetornarConsulta("
+			DELETE FROM `especificaciones` WHERE `idMaquina` = $id
+			");
+
+			$consulta->execute();	
+
+            /*$consulta->bindValue(':idMaquina', $id, PDO::PARAM_STR);
+
+            $consulta->execute();*/
+
+            $respuesta = array("Estado" => true, "Mensaje" => "Eliminado Correctamente");
+        } catch (Exception $e) {
+            $mensaje = $e->getMessage();
+            $respuesta = array("Estado" => false, "Mensaje" => "$mensaje");
+        }
+        finally {
+            return $respuesta;
+        }
+    }
 }

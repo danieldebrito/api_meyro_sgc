@@ -49,6 +49,8 @@ $this->get('/maquinas/{id}', \especificacionApi::class . ':getAllMaquina');
 $this->post('/', \especificacionApi::class . ':setOne');
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/17
 $this->delete('/{id}[/]', \especificacionApi::class . ':delete');
+
+$this->delete('/maquina/{id}[/]', \especificacionApi::class . ':deleteTodosMaquina');
 // http://localhost/api_meyro_sgc/app/index.php/especificacion/update/
 $this->post('/update[/]', \especificacionApi::class . ':updateOne');
 });
