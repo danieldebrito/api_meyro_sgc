@@ -22,7 +22,7 @@ $app->get("/", function() {
   echo "
   <p style='font-size:50px;'>Hola mundo desde api_meyro_sgc</p> 
   <br> <br> 
-  <p style='font-family:courier;'>Conexion ok con la .</p>
+  <p style='font-family:courier;'>Conexion ok con la API.</p>
   ";
 });
 
@@ -74,7 +74,7 @@ $app->group('/maquinaRepuesto', function () {
     $this->post('/', \MaquinaRepuesto::class . ':setOne');
     $this->delete('/{id}[/]', \MaquinaRepuesto::class . ':delete');
   });
-
+/*
 // cors habilitadas
 $app->add(function ($req, $res, $next) {
   $response = $next($req, $res);
@@ -83,6 +83,6 @@ $app->add(function ($req, $res, $next) {
          // ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
           ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
           ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-});
+});*/
 
 $app->run();

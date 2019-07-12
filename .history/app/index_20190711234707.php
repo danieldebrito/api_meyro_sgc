@@ -18,12 +18,8 @@ $config['addContentLengthHeader'] = false;
 
 $app = new \Slim\App(["settings" => $config]);
 
-$app->get("/", function() {
-  echo "
-  <p style='font-size:50px;'>Hola mundo desde api_meyro_sgc</p> 
-  <br> <br> 
-  <p style='font-family:courier;'>Conexion ok con la .</p>
-  ";
+$app->get("/test", function() {
+	echo "Hola mundo desde la API";
 });
 
 $app->group('/maquina', function () {

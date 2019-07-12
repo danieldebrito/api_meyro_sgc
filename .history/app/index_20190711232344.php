@@ -2,8 +2,6 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-header('Access-Control-Allow-Origin: *');
-
 require '../composer/vendor/autoload.php';
 require './AccesoDatos.php';
 
@@ -18,12 +16,8 @@ $config['addContentLengthHeader'] = false;
 
 $app = new \Slim\App(["settings" => $config]);
 
-$app->get("/", function() {
-  echo "
-  <p style='font-size:50px;'>Hola mundo desde api_meyro_sgc</p> 
-  <br> <br> 
-  <p style='font-family:courier;'>Conexion ok con la .</p>
-  ";
+$app->get("/test", function() {
+	echo "Hola mundo desde la API";
 });
 
 $app->group('/maquina', function () {
@@ -80,7 +74,7 @@ $app->add(function ($req, $res, $next) {
   $response = $next($req, $res);
   return $response
           //->withHeader('Access-Control-Allow-Origin', 'http://juntasmeyro.com.ar')
-         // ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+          ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
           ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
           ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 });
