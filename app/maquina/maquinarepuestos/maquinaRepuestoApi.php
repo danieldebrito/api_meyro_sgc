@@ -1,5 +1,5 @@
 <?php
-require_once 'repuesto.php';
+require_once 'maquinaRepuesto.php';
 // require_once 'IApiUsable.php';
 
 class repuestoApi extends repuesto /* implements IApiUsable */ {
@@ -20,14 +20,14 @@ class repuestoApi extends repuesto /* implements IApiUsable */ {
  	public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
-		$idMaquina = $ArrayDeParametros['idMaquina'];
+		//$idRepuesto = $ArrayDeParametros['idRepuesto'];
 		$detalle = $ArrayDeParametros['detalle'];
 		$marca = $ArrayDeParametros['marca'];
 		$codigo = $ArrayDeParametros['codigo'];
 
 		$ent = new Repuesto();
 
-		$ent->idMaquina=$idMaquina;
+		//$ent->idRepuesto=$idRepuesto;
 		$ent->detalle=$detalle;
 		$ent->marca=$marca;
 		$ent->codigo=$codigo;
@@ -52,7 +52,6 @@ class repuestoApi extends repuesto /* implements IApiUsable */ {
 		$me = new Repuesto();
 
 		$me->idRepuesto = $ArrayDeParametros['idRepuesto'];
-		$me->idMaquina = $ArrayDeParametros['idMaquina'];
 		$me->detalle = $ArrayDeParametros['detalle'];
 		$me->marca = $ArrayDeParametros['marca'];
 		$me->codigo = $ArrayDeParametros['codigo'];

@@ -1,15 +1,14 @@
 <?php
 class Especificacion
 {
-	public $idEspecificacion;
+	public $idEspecificacion;  // AI  //
 	public $idMaquina;
  	public $detalle;
 
 	public static function TraerTodos(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `especificaciones` WHERE 1
-		");
+		$consulta =$objetoAccesoDato->RetornarConsulta
+		("SELECT * FROM `especificaciones` WHERE 1");
 		$consulta->execute();		
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "Especificacion");		
 	}
@@ -26,16 +25,16 @@ class Especificacion
 
 	public function CargarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("
-		INSERT INTO `especificaciones` 
+		$consulta =$objetoAccesoDato->RetornarConsulta(
+			"INSERT INTO `especificaciones` 
 				(`idMaquina`, 
 				`detalle`)
 			VALUES (
 				:idMaquina,
-				:detalle)
-		");
+				:detalle)"
+				);
 
-		//$consulta->bindValue(':idEspecificacion', $this->idEspecificacion, PDO::PARAM_STR);  AI
+		// AI //$consulta->bindValue(':idEspecificacion', $this->idEspecificacion, PDO::PARAM_STR);  AI
 		$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
 		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
 
@@ -103,11 +102,8 @@ class Especificacion
 			DELETE FROM `especificaciones` WHERE `idMaquina` = $id
 			");
 
-			$consulta->execute();	
-
-            /*$consulta->bindValue(':idMaquina', $id, PDO::PARAM_STR);
-
-            $consulta->execute();*/
+            $consulta->bindValue(':idMaquina', $id, PDO::PARAM_STR);
+            $consulta->execute();
 
             $respuesta = array("Estado" => true, "Mensaje" => "Eliminado Correctamente");
         } catch (Exception $e) {

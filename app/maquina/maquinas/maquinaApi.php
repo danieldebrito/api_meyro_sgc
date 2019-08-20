@@ -31,20 +31,20 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 		$fabricanteTelefono = $ArrayDeParametros['fabricanteTelefono'];
 		$fabricanteContacto = $ArrayDeParametros['fabricanteContacto'];
 
-		$maquina = new maquina();
+		$entity = new maquina();
 
-		$maquina->idMaquina=$idMaquina;
-		$maquina->detalle=$detalle;
-		$maquina->marca=$marca;
-		$maquina->sector=$sector;
-		$maquina->estado=$estado;
-		$maquina->urlImagen=$urlImagen;
-		$maquina->fabricanteNombre=$fabricanteNombre;
-		$maquina->fabricanteDireccion=$fabricanteDireccion;
-		$maquina->fabricanteTelefono=$fabricanteTelefono;
-		$maquina->fabricanteContacto=$fabricanteContacto;
+		$entity->idMaquina=$idMaquina;
+		$entity->detalle=$detalle;
+		$entity->marca=$marca;
+		$entity->sector=$sector;
+		$entity->estado=$estado;
+		$entity->urlImagen=$urlImagen;
+		$entity->fabricanteNombre=$fabricanteNombre;
+		$entity->fabricanteDireccion=$fabricanteDireccion;
+		$entity->fabricanteTelefono=$fabricanteTelefono;
+		$entity->fabricanteContacto=$fabricanteContacto;
 		
-		$maquina->CargarUno();
+		$entity->CargarUno();
 
 		$response->getBody()->write("true");
 
@@ -60,24 +60,22 @@ class maquinaApi extends maquina /* implements IApiUsable */ {
 
 	public function updateOne($request, $response, $args) {
 
-		$ArrayDeParametros = $request->getParsedBody();
-
-	   var_dump($ArrayDeParametros);    	
+		$ArrayDeParametros = $request->getParsedBody();    	
 	   
-	   $MiMaquina = new maquina();
+	   $entity = new maquina();
 
-	   // $MiMaquina->idMaquina=$ArrayDeParametros["idMaquina"];
-	   $MiMaquina->detalle=$ArrayDeParametros["detalle"];
-	   $MiMaquina->marca=$ArrayDeParametros["marca"];
-	   $MiMaquina->sector=$ArrayDeParametros["sector"];
-	   $MiMaquina->estado=$ArrayDeParametros["estado"];
-	   $MiMaquina->urlImagen=$ArrayDeParametros["urlImagen"];
-	   $MiMaquina->fabricanteNombre=$ArrayDeParametros["fabricanteNombre"];
-	   $MiMaquina->fabricanteDireccion=$ArrayDeParametros["fabricanteDireccion"];
-	   $MiMaquina->fabricanteTelefono=$ArrayDeParametros["fabricanteTelefono"];
-	   $MiMaquina->fabricanteContacto=$ArrayDeParametros["fabricanteContacto"];
+	   $entity->idMaquina=$ArrayDeParametros["idMaquina"];
+	   $entity->detalle=$ArrayDeParametros["detalle"];
+	   $entity->marca=$ArrayDeParametros["marca"];
+	   $entity->sector=$ArrayDeParametros["sector"];
+	   $entity->estado=$ArrayDeParametros["estado"];
+	   $entity->urlImagen=$ArrayDeParametros["urlImagen"];
+	   $entity->fabricanteNombre=$ArrayDeParametros["fabricanteNombre"];
+	   $entity->fabricanteDireccion=$ArrayDeParametros["fabricanteDireccion"];
+	   $entity->fabricanteTelefono=$ArrayDeParametros["fabricanteTelefono"];
+	   $entity->fabricanteContacto=$ArrayDeParametros["fabricanteContacto"];
 
-		$resultado = $MiMaquina->ModificarUno();
+		$resultado = $entity->ModificarUno();
 		$objDelaRespuesta= new stdclass();
 
 	   $objDelaRespuesta->resultado=$resultado;

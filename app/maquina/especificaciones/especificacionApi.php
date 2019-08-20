@@ -20,7 +20,7 @@ class especificacionApi extends especificacion /* implements IApiUsable */ {
  public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
-		//$idEspecificacion = $ArrayDeParametros['idEspecificacion'];
+		//$idEspecificacion = $ArrayDeParametros['idEspecificacion'];  AI
 		$idMaquina = $ArrayDeParametros['idMaquina'];
 		$detalle = $ArrayDeParametros['detalle'];
 
