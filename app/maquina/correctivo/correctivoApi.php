@@ -1,74 +1,77 @@
 <?php
 require_once 'correctivo.php';
-// require_once 'IApiUsable.php';
 
-class correctivoApi extends correctivo /* implements IApiUsable */ {
-
+class correctivoApi extends correctivo
+{
 	public function getAll($request, $response, $args) {
-		$todos=Repuesto::TraerTodos();
+		$todos=correctivo::TraerTodos();
 		$newResponse = $response->withJson($todos, 200);
-		return $newResponse;
-	}
+        
+        return $newResponse;
+    }
 
 	public function getOne($request, $response, $args) {
-		$id=$args['id'];
-	 	$ret = Repuesto::TraerUno($id);
-		$newResponse = $response->withJson($ret, 200);  
-	 	return $newResponse;
- 	}
+		$id=$args['idMantCorrect'];
+	 	$maquinaRetorno = correctivo::TraerUno($id);
+		$newResponse = $response->withJson($maquinaRetorno, 200);  
+         
+        return $newResponse;
+    }
 
- 	public function setOne($request, $response, $args) {
+    public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
-		$idMaquina = $ArrayDeParametros['idMaquina'];
-		$detalle = $ArrayDeParametros['detalle'];
-		$marca = $ArrayDeParametros['marca'];
-		$codigo = $ArrayDeParametros['codigo'];
+		$entity = new correctivo();
 
-		$ent = new Repuesto();
-
-		$ent->idMaquina=$idMaquina;
-		$ent->detalle=$detalle;
-		$ent->marca=$marca;
-		$ent->codigo=$codigo;
+		//$entity->idMantCorrect=$ArrayDeParametros['idMantCorrect'];  // AI //
+		$entity->idMaquina=$ArrayDeParametros['idMaquina'];
+		$entity->fechaSolicitud=$ArrayDeParametros['fechaSolicitud'];
+		$entity->solicitante=$ArrayDeParametros['solicitante'];
+		$entity->fechaReparacion=$ArrayDeParametros['fechaReparacion'];
+        $entity->mantRealizar=$ArrayDeParametros['mantRealizar'];
+        $entity->fechaRealizacion=$ArrayDeParametros['fechaRealizacion'];
+		$entity->realizadoPor=$ArrayDeParametros['realizadoPor'];
+		$entity->fechaReparado=$ArrayDeParametros['fechaReparado'];
+		$entity->horaReparado=$ArrayDeParametros['horaReparado'];
+		$entity->mantRealizado=$ArrayDeParametros['mantRealizado'];
 		
-		$ent->CargarUno();
+		$entity->CargarUno();
 
 		$response->getBody()->write("true");
 
 		return $response;
-	}
+    }
 
     public function delete($request,$response,$args){
-        $id = $args["id"];
-        $respuesta = Repuesto::Baja($id);
+        $id = $args["idMantCorrect"];
+        $respuesta = correctivo::Baja($id);
         $newResponse = $response->withJson($respuesta,200);
+        
         return $newResponse;
     }
 
 	public function updateOne($request, $response, $args) {
-		$ArrayDeParametros = $request->getParsedBody();
+	    $ArrayDeParametros = $request->getParsedBody();    	
+	   
+	    $entity = new correctivo();
 
-		$me = new Repuesto();
+        $entity->idMantCorrect=$ArrayDeParametros['idMantCorrect'];
+        $entity->idMaquina=$ArrayDeParametros['idMaquina'];
+        $entity->fechaSolicitud=$ArrayDeParametros['fechaSolicitud'];
+        $entity->solicitante=$ArrayDeParametros['solicitante'];
+        $entity->fechaReparacion=$ArrayDeParametros['fechaReparacion'];
+        $entity->mantRealizar=$ArrayDeParametros['mantRealizar'];
+        $entity->fechaRealizacion=$ArrayDeParametros['fechaRealizacion'];
+        $entity->realizadoPor=$ArrayDeParametros['realizadoPor'];
+        $entity->fechaReparado=$ArrayDeParametros['fechaReparado'];
+        $entity->horaReparado=$ArrayDeParametros['horaReparado'];
+        $entity->mantRealizado=$ArrayDeParametros['mantRealizado'];
 
-		$me->idRepuesto = $ArrayDeParametros['idRepuesto'];
-		$me->idMaquina = $ArrayDeParametros['idMaquina'];
-		$me->detalle = $ArrayDeParametros['detalle'];
-		$me->marca = $ArrayDeParametros['marca'];
-		$me->codigo = $ArrayDeParametros['codigo'];
-
-		$resultado = $me->ModificarUno();
-		
+	    $resultado = $entity->ModificarUno();
 		$objDelaRespuesta= new stdclass();
-		$objDelaRespuesta->resultado = $resultado;
-			
-		return $response->withJson($objDelaRespuesta, 200);		
-	}
 
-	public function getAllMachine($request, $response, $args) {
-		$id = $args["id"];
-		$todos=Repuesto::TraerTodosMaquina($id);
-		$newResponse = $response->withJson($todos, 200);
-		return $newResponse;
-	}
+	    $objDelaRespuesta->resultado=$resultado;
+       
+        return $response->withJson($objDelaRespuesta, 200);		
+   }
 }

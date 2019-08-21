@@ -1,6 +1,5 @@
 <?php
-class maquina
-{
+class maquina{
 	public $idMaquina;
  	public $detalle;
   	public $marca;
