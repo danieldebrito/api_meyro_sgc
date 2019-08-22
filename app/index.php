@@ -53,16 +53,6 @@ $app->group('/maquinaRepuestos', function () {
   $this->get('/porMaquina/{id}[/]', \repuestoApi::class . ':getAllMachine');
 });
 
-$app->group('/maqreps', function () {
-  $this->get('/', \maqrepApi::class . ':getAll');
-    /*
-    $this->get('/{id}', \maquinaApi::class . ':getOne');
-    $this->post('/', \maquinaApi::class . ':setOne');
-    $this->delete('/{id}[/]', \maquinaAPI::class . ':delete');
-    $this->post('/update[/]', \maquinaApi::class . ':updateOne');
-    */
-});
-
 $app->group('/correctivos', function () {
   $this->get('/', \correctivoApi::class . ':getAll');
   $this->get('/{idMantCorrect}', \correctivoApi::class . ':getOne');
@@ -73,12 +63,12 @@ $app->group('/correctivos', function () {
 
 /* maq_rep */
 
-$app->group('/maq_rep', function () {
-  $this->get('/', \maq_repApi::class . ':getAll');/*
-  $this->get('/{idMantCorrect}', \correctivoApi::class . ':getOne');
-  $this->post('/', \correctivoApi::class . ':setOne');
-  $this->delete('/{idMantCorrect}[/]', \correctivoApi::class . ':delete');
-  $this->post('/update[/]', \correctivoApi::class . ':updateOne');*/
+$app->group('/maq_reps', function () {
+  $this->get('/', \maq_repApi::class . ':getAll');
+  $this->get('/{id}', \maq_repApi::class . ':getOne');
+  $this->post('/', \maq_repApi::class . ':setOne');
+  $this->delete('/{id}[/]', \maq_repApi::class . ':delete');
+  $this->post('/update[/]', \maq_repApi::class . ':updateOne');
 });
 
 

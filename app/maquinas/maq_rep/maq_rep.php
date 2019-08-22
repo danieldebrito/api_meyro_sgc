@@ -6,54 +6,67 @@ class maq_rep
  	public $idRepuesto;
 
 	public static function TraerTodos(){
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta
-		("SELECT * FROM `maq_rep` WHERE 1");
-		$consulta->execute();		
-		return $consulta->fetchAll(PDO::FETCH_CLASS, "maq_rep");		
+		try {
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta(
+				"SELECT * FROM `maq_reps`"
+			);
+			$consulta->execute();		
+			
+			$ret = $consulta->fetchAll(PDO::FETCH_CLASS, "maq_rep");
+		} catch (Exception $e) {
+			$mensaje = $e->getMessage();
+			$respuesta = array("Estado" => "ERROR", "Mensaje" => "$mensaje");
+		} finally {
+			return $ret;
+		}			
 	}
 
-	/*
-
 	public static function TraerUno($id) {
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `especificaciones` WHERE `idEspecificacion` = $id
-		");
-		$consulta->execute();
-		$ret = $consulta->fetchObject('Especificacion');
-		return $ret;
+		try {
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta(
+				"SELECT * FROM `maq_reps` WHERE `idmaq_rep` = $id"
+			);
+
+			$consulta->execute();
+			$ret = $consulta->fetchObject('maq_rep');
+			
+		} catch (Exception $e) {
+            $mensaje = $e->getMessage();
+            $respuesta = array("Estado" => "ERROR", "Mensaje" => "$mensaje");
+        } finally {
+            return $ret;
+        }	
 	}
 
 	public function CargarUno(){
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta(
-			"INSERT INTO `especificaciones` 
-				(`idMaquina`, 
-				`detalle`)
+			"INSERT INTO `maq_reps` 
+				(`idMaquina`,
+				`idRepuesto`)
 			VALUES (
 				:idMaquina,
-				:detalle)"
+				:idRepuesto)"
 				);
 
-		// AI //$consulta->bindValue(':idEspecificacion', $this->idEspecificacion, PDO::PARAM_STR);  AI
+		// AI //$consulta->bindValue(':idmaq_rep', $this->idmaq_rep, PDO::PARAM_INT);  AI
 		$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
-		$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
+		$consulta->bindValue(':idRepuesto', $this->idRepuesto, PDO::PARAM_STR);
 
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	}
 
-	public static function Baja($id)
-    {
+	public static function Baja($id){
         try {
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-            $consulta = $objetoAccesoDato->RetornarConsulta("
-			DELETE FROM `especificaciones` WHERE `idEspecificacion` = $id
-			");
+            $consulta = $objetoAccesoDato->RetornarConsulta(
+				"DELETE FROM `maq_reps` WHERE `idmaq_rep` = $id");
 
-            $consulta->bindValue(':idEspecificacion', $id, PDO::PARAM_STR);
+            $consulta->bindValue(':idmaq_rep', $id, PDO::PARAM_STR);
 
             $consulta->execute();
 
@@ -72,49 +85,17 @@ class maq_rep
 
 		$consulta = $objetoAccesoDato->RetornarConsulta(
 			"UPDATE
-			 `especificaciones` 
+			 `maq_reps` 
 			 SET 
 			 `idMaquina`=:idMaquina, 
-			 `detalle`=:detalle
-			 WHERE `idEspecificacion` = :idEspecificacion"
+			 `idRepuesto`=:idRepuesto
+			 WHERE `idmaq_rep`=:idmaq_rep"
 			 );
 
-			$consulta->bindValue(':idEspecificacion', $this->idEspecificacion, PDO::PARAM_STR);
+			$consulta->bindValue(':idmaq_rep', $this->idmaq_rep, PDO::PARAM_STR);
 			$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
-			$consulta->bindValue(':detalle', $this->detalle, PDO::PARAM_STR);
+			$consulta->bindValue(':idRepuesto', $this->idRepuesto, PDO::PARAM_STR);
 
 		return $consulta->execute();
 	}
-
-	public static function TraerTodosMaquina($id){
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("
-		SELECT * FROM `especificaciones` WHERE `idMaquina` = $id
-		");
-		$consulta->execute();		
-		return $consulta->fetchAll(PDO::FETCH_CLASS, "Especificacion");		
-	}
-
-	public function BajaTodosMaquina($id)
-    {
-        try {
-            $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-
-            $consulta = $objetoAccesoDato->RetornarConsulta("
-			DELETE FROM `especificaciones` WHERE `idMaquina` = $id
-			");
-
-            $consulta->bindValue(':idMaquina', $id, PDO::PARAM_STR);
-            $consulta->execute();
-
-            $respuesta = array("Estado" => true, "Mensaje" => "Eliminado Correctamente");
-        } catch (Exception $e) {
-            $mensaje = $e->getMessage();
-            $respuesta = array("Estado" => false, "Mensaje" => "$mensaje");
-        }
-        finally {
-            return $respuesta;
-        }
-	}
-	*/
 }
