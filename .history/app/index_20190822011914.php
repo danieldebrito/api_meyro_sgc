@@ -6,11 +6,11 @@ require '../composer/vendor/autoload.php';
 require './AccesoDatos.php';
 
 //////////// entidades //////////////////////////////////////////////////////
-require './maquinas/maquinas/maquinaApi.php';
-require './maquinas/especificaciones/especificacionApi.php';
-require './maquinas/maquinaRepuestos/maquinaRepuestoApi.php';
-require './maquinas/maq_rep/maq_repApi.php';
-require './maquinas/correctivo/correctivoApi.php';
+require './maquina/maquinas/maquinaApi.php';
+require './maquina/especificaciones/especificacionApi.php';
+require './maquina/maquinaRepuestos/maquinaRepuestoApi.php';
+require './maquina/maq_rep/maq_repApi.php';
+require './maquina/correctivo/correctivoApi.php';
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;

@@ -6,11 +6,11 @@ require '../composer/vendor/autoload.php';
 require './AccesoDatos.php';
 
 //////////// entidades //////////////////////////////////////////////////////
-require './maquinas/maquinas/maquinaApi.php';
-require './maquinas/especificaciones/especificacionApi.php';
-require './maquinas/maquinaRepuestos/maquinaRepuestoApi.php';
-require './maquinas/maq_rep/maq_repApi.php';
-require './maquinas/correctivo/correctivoApi.php';
+require './maquina/maquinas/maquinaApi.php';
+require './maquina/especificaciones/especificacionApi.php';
+require './maquina/maquinaRepuestos/maquinaRepuestoApi.php';
+require './maquina/maq_rep/maq_repApi.php';
+require './maquina/correctivo/correctivoApi.php';
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -74,7 +74,7 @@ $app->group('/correctivos', function () {
 /* maq_rep */
 
 $app->group('/maq_rep', function () {
-  $this->get('/', \maq_repApi::class . ':getAll');/*
+  $this->get('/', \correctivoApi::class . ':getAll');/*
   $this->get('/{idMantCorrect}', \correctivoApi::class . ':getOne');
   $this->post('/', \correctivoApi::class . ':setOne');
   $this->delete('/{idMantCorrect}[/]', \correctivoApi::class . ':delete');
