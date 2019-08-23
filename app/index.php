@@ -61,8 +61,6 @@ $app->group('/correctivos', function () {
   $this->post('/update[/]', \correctivoApi::class . ':updateOne');
 });
 
-/* maq_rep */
-
 $app->group('/maq_reps', function () {
   $this->get('/', \maq_repApi::class . ':getAll');
   $this->get('/{id}', \maq_repApi::class . ':getOne');
