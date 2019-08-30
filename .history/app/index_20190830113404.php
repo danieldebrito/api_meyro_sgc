@@ -6,11 +6,11 @@ require '../composer/vendor/autoload.php';
 require './AccesoDatos.php';
 
 //////////// entidades //////////////////////////////////////////////////////
-require './maquinasFolder/maquinas/maquinaApi.php';
-require './maquinasFolder/especificaciones/especificacionApi.php';
-require './maquinasFolder/maquinaRepuestos/maquinaRepuestoApi.php';
-require './maquinasFolder/maq_rep/maq_repApi.php';
-require './maquinasFolder/correctivo/correctivoApi.php';
+require './maquinas/maquinas/maquinaApi.php';
+require './maquinas/especificaciones/especificacionApi.php';
+require './maquinas/maquinaRepuestos/maquinaRepuestoApi.php';
+require './maquinas/maq_rep/maq_repApi.php';
+require './maquinas/correctivo/correctivoApi.php';
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -77,6 +77,5 @@ $app->add(function ($req, $res, $next) {
           ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
           ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
-
 
 $app->run();

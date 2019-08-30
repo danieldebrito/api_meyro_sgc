@@ -78,5 +78,17 @@ $app->add(function ($req, $res, $next) {
           ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 
+if($this->request->is("options")){
+
+  $this->response->header('Access-Control-Allow-Origin','http://localhost:4200');
+  $this->response->header('Access-Control-Allow-Methods','*');
+  $this->response->header('Access-Control-Allow-Credentials', 'true');
+
+  $this->response->header('Access-Control-Allow-Headers','Content-Type, Authorization');
+
+  $this->response->send();
+
+  $this->_stop();
+}
 
 $app->run();
