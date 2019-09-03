@@ -60,4 +60,14 @@ class maq_repApi extends maq_rep /* implements IApiUsable */ {
 			
 		return $response->withJson($objDelaRespuesta, 200);		
 	}
+
+		///////////////////////////////////  end CRUD /////////////////////////////////////////////
+
+		public function getAllMachina($request, $response, $args) {
+			$id=$args['id'];
+			 $ret = maq_rep::TraerTodosMaquina($id);
+			$newResponse = $response->withJson($ret, 200);  
+			 return $newResponse;
+		}
+
 }

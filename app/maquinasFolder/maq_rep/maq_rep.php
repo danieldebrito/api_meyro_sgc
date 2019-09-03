@@ -98,4 +98,27 @@ class maq_rep
 
 		return $consulta->execute();
 	}
+
+	///////////////////////////////////  end CRUD /////////////////////////////////////////////
+
+	public static function TraerTodosMaquina($id){
+		try {
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta(
+				"SELECT ma.idMaquina, re.idRepuesto, re.detalle, re.marca, re.codigo
+				FROM maq_reps mr, maquinas ma, maquinarepuestos re
+				WHERE mr.idMaquina = ma.idMaquina
+				AND mr.idRepuesto = re.idRepuesto
+				AND ma.idMaquina = $id"
+			);
+			$consulta->execute();		
+			
+			$ret = $consulta->fetchAll(PDO::FETCH_CLASS);
+		} catch (Exception $e) {
+			$mensaje = $e->getMessage();
+			$respuesta = array("Estado" => "ERROR", "Mensaje" => "$mensaje");
+		} finally {
+			return $ret;
+		}			
+	}
 }

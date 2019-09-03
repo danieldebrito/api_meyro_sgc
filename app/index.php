@@ -25,6 +25,9 @@ $app->get("/", function() {
   ";
 });
 
+// URL
+// http://localhost/api_myr_sgc/app
+
 $app->group('/maquinas', function () {
   $this->get('/', \maquinaApi::class . ':getAll');
   $this->get('/{id}', \maquinaApi::class . ':getOne');
@@ -66,6 +69,9 @@ $app->group('/MaqRto', function () {
   $this->post('/', \maq_repApi::class . ':setOne');
   $this->delete('/{id}[/]', \maq_repApi::class . ':delete');
   $this->post('/update[/]', \maq_repApi::class . ':updateOne');
+
+  $this->get('/maquina/{id}', \maq_repApi::class . ':getAllMachina');
+
 });
 
 
