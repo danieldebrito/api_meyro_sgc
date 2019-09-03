@@ -50,7 +50,6 @@ $app->group('/maquinaRepuestos', function () {
   $this->post('/', \repuestoApi::class . ':setOne');
   $this->delete('/{id}[/]', \repuestoApi::class . ':delete');
   $this->post('/update[/]', \repuestoApi::class . ':updateOne');
-  $this->get('/porMaquina/{id}[/]', \repuestoApi::class . ':getAllMachine');
 });
 
 $app->group('/correctivos', function () {
@@ -61,7 +60,7 @@ $app->group('/correctivos', function () {
   $this->post('/update[/]', \correctivoApi::class . ':updateOne');
 });
 
-$app->group('/maq_reps', function () {
+$app->group('/MaqRto', function () {
   $this->get('/', \maq_repApi::class . ':getAll');
   $this->get('/{id}', \maq_repApi::class . ':getOne');
   $this->post('/', \maq_repApi::class . ':setOne');

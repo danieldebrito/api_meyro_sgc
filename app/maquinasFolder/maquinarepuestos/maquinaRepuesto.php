@@ -77,13 +77,4 @@ class Repuesto{
 
 		return $consulta->execute();
 	}
-
-	public static function TraerTodosMaquina($id){
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta(
-			"SELECT * FROM `maquinarepuestos` WHERE `idMaquina` = $id"
-		);
-		$consulta->execute();		
-		return $consulta->fetchAll(PDO::FETCH_CLASS, "Repuesto");		
-	}
 }

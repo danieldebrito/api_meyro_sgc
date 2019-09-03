@@ -64,10 +64,4 @@ class repuestoApi extends repuesto /* implements IApiUsable */ {
 		return $response->withJson($objDelaRespuesta, 200);		
 	}
 
-	public function getAllMachine($request, $response, $args) {
-		$id = $args["id"];
-		$todos=Repuesto::TraerTodosMaquina($id);
-		$newResponse = $response->withJson($todos, 200);
-		return $newResponse;
-	}
 }
