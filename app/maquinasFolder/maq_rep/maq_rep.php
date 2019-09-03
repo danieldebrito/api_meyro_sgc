@@ -1,7 +1,7 @@
 <?php
 class maq_rep
 {
-	public $idmaq_rep;  // AI  //
+	public $idMaqRep;  // AI  //
 	public $idMaquina;
  	public $idRepuesto;
 
@@ -26,7 +26,7 @@ class maq_rep
 		try {
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta(
-				"SELECT * FROM `maq_reps` WHERE `idmaq_rep` = $id"
+				"SELECT * FROM `maq_reps` WHERE `idMaqRep` = $id"
 			);
 
 			$consulta->execute();
@@ -51,7 +51,7 @@ class maq_rep
 				:idRepuesto)"
 				);
 
-		// AI //$consulta->bindValue(':idmaq_rep', $this->idmaq_rep, PDO::PARAM_INT);  AI
+		// AI //$consulta->bindValue(':idMaqRep', $this->idMaqRep, PDO::PARAM_INT);  AI
 		$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
 		$consulta->bindValue(':idRepuesto', $this->idRepuesto, PDO::PARAM_STR);
 
@@ -64,9 +64,9 @@ class maq_rep
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
             $consulta = $objetoAccesoDato->RetornarConsulta(
-				"DELETE FROM `maq_reps` WHERE `idmaq_rep` = $id");
+				"DELETE FROM `maq_reps` WHERE `idMaqRep` = $id");
 
-            $consulta->bindValue(':idmaq_rep', $id, PDO::PARAM_STR);
+            $consulta->bindValue(':idMaqRep', $id, PDO::PARAM_STR);
 
             $consulta->execute();
 
@@ -89,10 +89,10 @@ class maq_rep
 			 SET 
 			 `idMaquina`=:idMaquina, 
 			 `idRepuesto`=:idRepuesto
-			 WHERE `idmaq_rep`=:idmaq_rep"
+			 WHERE `idMaqRep`=:idMaqRep"
 			 );
 
-			$consulta->bindValue(':idmaq_rep', $this->idmaq_rep, PDO::PARAM_STR);
+			$consulta->bindValue(':idMaqRep', $this->idMaqRep, PDO::PARAM_STR);
 			$consulta->bindValue(':idMaquina', $this->idMaquina, PDO::PARAM_STR);
 			$consulta->bindValue(':idRepuesto', $this->idRepuesto, PDO::PARAM_STR);
 

@@ -20,7 +20,7 @@ class maq_repApi extends maq_rep /* implements IApiUsable */ {
  	public function setOne($request, $response, $args) {
 		$ArrayDeParametros = $request->getParsedBody();
 
-		//$idEspecificacion = $ArrayDeParametros['idEspecificacion'];  AI
+		//$idMaqRep = $ArrayDeParametros['idMaqRep'];  AI
 		$idMaquina = $ArrayDeParametros['idMaquina'];
 		$idRepuesto = $ArrayDeParametros['idRepuesto'];
 
@@ -49,7 +49,7 @@ class maq_repApi extends maq_rep /* implements IApiUsable */ {
 
 		$me = new Especificacion();
 
-		$me->idmaq_rep = $ArrayDeParametros['idmaq_rep'];
+		$me->idMaqRep = $ArrayDeParametros['idMaqRep'];
 		$me->idMaquina = $ArrayDeParametros['idMaquina'];
 		$me->idRepuesto = $ArrayDeParametros['idRepuesto'];
 

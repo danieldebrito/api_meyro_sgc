@@ -32,9 +32,9 @@ class repuestoApi extends repuesto /* implements IApiUsable */ {
 		$ent->marca=$marca;
 		$ent->codigo=$codigo;
 		
-		$ent->CargarUno();
+		$response = $ent->CargarUno();  // retorna el ultimo id insertado
 
-		$response->getBody()->write("true");
+		// $response->getBody()->write("true");
 
 		return $response;
 	}
