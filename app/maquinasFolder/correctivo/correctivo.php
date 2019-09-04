@@ -49,8 +49,7 @@ class correctivo
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta(
                 "INSERT INTO `correctivos` 
-					(`idMantCorrect`, 
-					`idMaquina`, 
+					(`idMaquina`, 
 					`fechaSolicitud`, 
 					`solicitante`, 
 					`fechaReparacion`, 
@@ -61,7 +60,6 @@ class correctivo
                     `horaReparado`,
                     `mantRealizado`)
 				VALUES (
-					:idMantCorrect, 
 					:idMaquina, 
 					:fechaSolicitud, 
 					:solicitante, 

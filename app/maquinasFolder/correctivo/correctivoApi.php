@@ -35,9 +35,7 @@ class correctivoApi extends correctivo
 		$entity->horaReparado=$ArrayDeParametros['horaReparado'];
 		$entity->mantRealizado=$ArrayDeParametros['mantRealizado'];
 		
-		$entity->CargarUno();
-
-		$response->getBody()->write("true");
+		$response = $entity->CargarUno();
 
 		return $response;
     }
