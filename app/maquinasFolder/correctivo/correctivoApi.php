@@ -29,7 +29,6 @@ class correctivoApi extends correctivo
 		$entity->solicitante=$ArrayDeParametros['solicitante'];
 		$entity->fechaReparacion=$ArrayDeParametros['fechaReparacion'];
         $entity->mantRealizar=$ArrayDeParametros['mantRealizar'];
-        $entity->fechaRealizacion=$ArrayDeParametros['fechaRealizacion'];
 		$entity->realizadoPor=$ArrayDeParametros['realizadoPor'];
 		$entity->fechaReparado=$ArrayDeParametros['fechaReparado'];
 		$entity->horaReparado=$ArrayDeParametros['horaReparado'];
@@ -59,7 +58,6 @@ class correctivoApi extends correctivo
         $entity->solicitante=$ArrayDeParametros['solicitante'];
         $entity->fechaReparacion=$ArrayDeParametros['fechaReparacion'];
         $entity->mantRealizar=$ArrayDeParametros['mantRealizar'];
-        $entity->fechaRealizacion=$ArrayDeParametros['fechaRealizacion'];
         $entity->realizadoPor=$ArrayDeParametros['realizadoPor'];
         $entity->fechaReparado=$ArrayDeParametros['fechaReparado'];
         $entity->horaReparado=$ArrayDeParametros['horaReparado'];
@@ -72,4 +70,13 @@ class correctivoApi extends correctivo
        
         return $response->withJson($objDelaRespuesta, 200);		
    }
+
+   ///////////////////////////////////  end CRUD /////////////////////////////////////////////
+
+    public function getAllMachina($request, $response, $args) {
+    $id=$args['id'];
+     $ret = correctivo::TraerTodosMaquina($id);
+    $newResponse = $response->withJson($ret, 200);  
+     return $newResponse;
+    }
 }

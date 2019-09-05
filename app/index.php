@@ -61,6 +61,9 @@ $app->group('/correctivos', function () {
   $this->post('/', \correctivoApi::class . ':setOne');
   $this->delete('/{idMantCorrect}[/]', \correctivoApi::class . ':delete');
   $this->post('/update[/]', \correctivoApi::class . ':updateOne');
+
+  $this->get('/maquina/{id}', \correctivoApi::class . ':getAllMachina');
+
 });
 
 $app->group('/MaqRto', function () {

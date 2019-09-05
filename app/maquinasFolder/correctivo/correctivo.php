@@ -7,7 +7,6 @@ class correctivo
     public $solicitante;
     public $fechaReparacion;
     public $mantRealizar;
-    public $fechaRealizacion;
     public $realizadoPor;
     public $fechaReparado;
     public $horaReparado;
@@ -49,12 +48,11 @@ class correctivo
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta(
                 "INSERT INTO `correctivos` 
-					(`idMaquina`, 
-					`fechaSolicitud`, 
-					`solicitante`, 
-					`fechaReparacion`, 
+					(`idMaquina`,
+					`fechaSolicitud`,
+					`solicitante`,
+					`fechaReparacion`,  
 					`mantRealizar`, 
-					`fechaRealizacion`, 
 					`realizadoPor`, 
 					`fechaReparado`, 
                     `horaReparado`,
@@ -65,7 +63,6 @@ class correctivo
 					:solicitante, 
 					:fechaReparacion, 
 					:mantRealizar, 
-					:fechaRealizacion, 
                     :realizadoPor,
                     :fechaReparado,  
 					:horaReparado, 
@@ -78,7 +75,6 @@ class correctivo
 			$consulta->bindValue(':solicitante', $this->solicitante, PDO::PARAM_STR);
 			$consulta->bindValue(':fechaReparacion', $this->fechaReparacion, PDO::PARAM_STR);
 			$consulta->bindValue(':mantRealizar', $this->mantRealizar, PDO::PARAM_STR);
-			$consulta->bindValue(':fechaRealizacion', $this->fechaRealizacion, PDO::PARAM_STR);
 			$consulta->bindValue(':realizadoPor', $this->realizadoPor, PDO::PARAM_STR);
             $consulta->bindValue(':fechaReparado', $this->fechaReparado, PDO::PARAM_STR);
             $consulta->bindValue(':horaReparado', $this->horaReparado, PDO::PARAM_STR);
@@ -126,7 +122,6 @@ class correctivo
 			`solicitante`=:solicitante,
 			`fechaReparacion`=:fechaReparacion,
 			`mantRealizar`=:mantRealizar,
-			`fechaRealizacion`=:fechaRealizacion,
 			`realizadoPor`=:realizadoPor,
             `fechaReparado`=:fechaReparado,
 			`horaReparado`=:horaReparado,
@@ -140,7 +135,6 @@ class correctivo
 			$consulta->bindValue(':solicitante', $this->solicitante, PDO::PARAM_STR);
 			$consulta->bindValue(':fechaReparacion', $this->fechaReparacion, PDO::PARAM_STR);
             $consulta->bindValue(':mantRealizar', $this->mantRealizar, PDO::PARAM_STR);
-            $consulta->bindValue(':fechaRealizacion', $this->fechaRealizacion, PDO::PARAM_STR);
 			$consulta->bindValue(':realizadoPor', $this->realizadoPor, PDO::PARAM_STR);
 			$consulta->bindValue(':fechaReparado', $this->fechaReparado, PDO::PARAM_STR);
 			$consulta->bindValue(':horaReparado', $this->horaReparado, PDO::PARAM_STR);
@@ -153,5 +147,26 @@ class correctivo
         } finally {
             return $consulta->execute();
         }
-     }
+	}
+	
+		///////////////////////////////////  end CRUD /////////////////////////////////////////////
+
+		public static function TraerTodosMaquina($id){
+			try {
+				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+				$consulta =$objetoAccesoDato->RetornarConsulta(
+					"SELECT * 
+					FROM `correctivos` 
+					WHERE `idMaquina` = $id"
+				);
+				$consulta->execute();		
+				
+				$ret = $consulta->fetchAll(PDO::FETCH_CLASS);
+			} catch (Exception $e) {
+				$mensaje = $e->getMessage();
+				$respuesta = array("Estado" => "ERROR", "Mensaje" => "$mensaje");
+			} finally {
+				return $ret;
+			}			
+		}
 }
