@@ -8,7 +8,7 @@ require './AccesoDatos.php';
 //////////// entidades //////////////////////////////////////////////////////
 require './maquinasFolder/maquinas/maquinaApi.php';
 require './maquinasFolder/especificaciones/especificacionApi.php';
-require './maquinasFolder/maquinaRepuestos/maquinaRepuestoApi.php';
+require './maquinasFolder/maquinarepuestos/maquinaRepuestoApi.php';
 require './maquinasFolder/maq_rep/maq_repApi.php';
 require './maquinasFolder/correctivo/correctivoApi.php';
 
@@ -81,9 +81,9 @@ $app->group('/MaqRto', function () {
 $app->add(function ($req, $res, $next) {
   $response = $next($req, $res);
   return $response
-          ->withHeader('Access-Control-Allow-Origin', 'http://juntasmeyro.com.ar')
-          ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-          ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    ->withHeader('Access-Control-Allow-Origin', 'http://juntasmeyro.com.ar')
+    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 
 
