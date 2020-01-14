@@ -11,6 +11,7 @@ require './maquinasFolder/especificaciones/especificacionApi.php';
 require './maquinasFolder/maquinaRepuestos/maquinaRepuestoApi.php';
 require './maquinasFolder/maq_rep/maq_repApi.php';
 require './maquinasFolder/correctivo/correctivoApi.php';
+require './sectores/sectorApi.php';
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -22,11 +23,15 @@ $app->get("/", function() {
   <p style='font-size:50px;'>Hola mundo desde api_meyro_sgc</p> 
   <br> <br> 
   <p style='font-family:courier;'>Conexion ok con la API.</p>
+  
+  
+  URL
+  http://localhost/api_myr_sgc/app
+
   ";
 });
 
-// URL
-// http://localhost/api_myr_sgc/app
+
 
 $app->group('/maquinas', function () {
   $this->get('/', \maquinaApi::class . ':getAll');
@@ -75,6 +80,14 @@ $app->group('/MaqRto', function () {
 
   $this->get('/maquina/{id}', \maq_repApi::class . ':getAllMachina');
 
+});
+
+$app->group('/sectores', function () {
+  $this->get('/', \sectorApi::class . ':getAll');
+  $this->get('/{id}', \sectorApi::class . ':getOne');
+  $this->post('/', \sectorApi::class . ':setOne');
+  $this->delete('/{id}[/]', \sectorApi::class . ':deleteOne');
+  $this->post('/update[/]', \sectorApi::class . ':updateOne');
 });
 
 
