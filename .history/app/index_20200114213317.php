@@ -8,9 +8,10 @@ require './AccesoDatos.php';
 //////////// entidades //////////////////////////////////////////////////////
 require './maquinasFolder/maquinas/maquinaApi.php';
 require './maquinasFolder/especificaciones/especificacionApi.php';
-require './maquinasFolder/maquinaRepuestos/maquinaRepuestoApi.php';
+require './maquinasFolder/maquinarepuestos/maquinaRepuestoApi.php';
 require './maquinasFolder/maq_rep/maq_repApi.php';
 require './maquinasFolder/correctivo/correctivoApi.php';
+require './sectores/sectorApi.php';
 
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
@@ -22,8 +23,15 @@ $app->get("/", function() {
   <p style='font-size:50px;'>Hola mundo desde api_meyro_sgc</p> 
   <br> <br> 
   <p style='font-family:courier;'>Conexion ok con la API.</p>
+  
+  
+  URL
+  http://localhost/api_myr_sgc/app
+
   ";
 });
+
+
 
 $app->group('/maquinas', function () {
   $this->get('/', \maquinaApi::class . ':getAll');
@@ -50,7 +58,6 @@ $app->group('/maquinaRepuestos', function () {
   $this->post('/', \repuestoApi::class . ':setOne');
   $this->delete('/{id}[/]', \repuestoApi::class . ':delete');
   $this->post('/update[/]', \repuestoApi::class . ':updateOne');
-  $this->get('/porMaquina/{id}[/]', \repuestoApi::class . ':getAllMachine');
 });
 
 $app->group('/correctivos', function () {
@@ -59,24 +66,73 @@ $app->group('/correctivos', function () {
   $this->post('/', \correctivoApi::class . ':setOne');
   $this->delete('/{idMantCorrect}[/]', \correctivoApi::class . ':delete');
   $this->post('/update[/]', \correctivoApi::class . ':updateOne');
+
+  $this->get('/maquina/{id}', \correctivoApi::class . ':getAllMachina');
+
 });
 
-$app->group('/maq_reps', function () {
+$app->group('/MaqRto', function () {
   $this->get('/', \maq_repApi::class . ':getAll');
   $this->get('/{id}', \maq_repApi::class . ':getOne');
   $this->post('/', \maq_repApi::class . ':setOne');
   $this->delete('/{id}[/]', \maq_repApi::class . ':delete');
   $this->post('/update[/]', \maq_repApi::class . ':updateOne');
+
+  $this->get('/maquina/{id}', \maq_repApi::class . ':getAllMachina');
+
+});
+
+$app->group('/sectores', function () {
+  $this->get('/', \sectorApi::class . ':getAll');
+  $this->get('/{id}', \sectorApi::class . ':getOne');
+  $this->post('/', \sectorApi::class . ':setOne');
+  $this->delete('/{id}[/]', \sectorApi::class . ':deleteOne');
+  $this->post('/update[/]', \sectorApi::class . ':updateOne');
+
+  $this->get('/sector/{sector}', \sectorApi::class . ':getId');
+
 });
 
 
 $app->add(function ($req, $res, $next) {
   $response = $next($req, $res);
   return $response
-          ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
-          ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-          ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 
 
 $app->run();
+
+/*
+
+$app->add(function ($req, $res, $next) {
+  $response = $next($req, $res);
+  return $response
+    ->withHeader('Access-Control-Allow-Origin', 'http://danieldebrito.com.ar')
+    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
+*/
+
+/*
+
+$app->add(function ($req, $res, $next) {
+  $response = $next($req, $res);
+  return $response
+  ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+  ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
+$app->add(function ($req, $res, $next) {
+  $response = $next($req, $res);
+  return $response
+    ->withHeader('Access-Control-Allow-Origin', 'http://juntasmeyro.com.ar')
+    ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
+*/

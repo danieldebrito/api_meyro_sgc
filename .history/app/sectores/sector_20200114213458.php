@@ -89,7 +89,7 @@ class sector
 		try {
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta(
-				"SELECT * FROM `sectores` WHERE `sector` = $sector"
+				"SELECT idSector FROM `sectores` WHERE `sector` = $sector"
 			);
 
 			$consulta->execute();

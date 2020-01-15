@@ -84,22 +84,4 @@ class sector
 
 		return $consulta->execute();
 	}
-
-	public static function TraerId($sector) {
-		try {
-			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta(
-				"SELECT * FROM `sectores` WHERE `sector` = $sector"
-			);
-
-			$consulta->execute();
-			$ret = $consulta->fetchObject('sector');
-			
-		} catch (Exception $e) {
-            $mensaje = $e->getMessage();
-            $respuesta = array("Estado" => "ERROR", "Mensaje" => "$mensaje");
-        } finally {
-            return $ret;
-        }	
-	}
 }

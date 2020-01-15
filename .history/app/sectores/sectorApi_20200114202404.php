@@ -57,12 +57,4 @@ class sectorApi extends sector implements IApiUsable {
 			
 		return $response->withJson($objDelaRespuesta, 200);		
 	}
-
-	public function getId($request, $response, $args) {
-
-		$sector=$args['sector'];
-	 	$ret = sector::TraerId($sector);
-		$newResponse = $response->withJson($ret, 200);  
-	 	return $newResponse;
-	}
 }

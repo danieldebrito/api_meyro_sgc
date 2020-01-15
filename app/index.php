@@ -88,6 +88,9 @@ $app->group('/sectores', function () {
   $this->post('/', \sectorApi::class . ':setOne');
   $this->delete('/{id}[/]', \sectorApi::class . ':deleteOne');
   $this->post('/update[/]', \sectorApi::class . ':updateOne');
+
+  $this->get('/sector/{sector}', \sectorApi::class . ':getId');
+
 });
 
 
